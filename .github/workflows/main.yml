@@ -4,5 +4,9 @@ jobs:
   Testing:
     runs-on: ubuntu-latest
     steps:
-     - name: Test run
-       run: echo "Testing workflow!"
+     - name: Code checkout
+       uses: actions/checkout@v4
+     - name: Maven Test
+       run: mvn test
+     - name: checkstyle
+       run: mvn checkstyle:checkstyle
