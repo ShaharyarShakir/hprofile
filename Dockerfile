@@ -3,7 +3,7 @@ RUN apt-get update && apt-get install -y maven
 COPY ./ vprofile-project
 RUN cd vprofile-project && mvn  install
 
-FROM tomcat:0-jre11
+FROM tomcat:9-jre11
 LABEL "Project"="VProfile"
 LABEL "Author"="shaharyar"
 RUN rm -rf /usr/local/tomcat/webapps/*

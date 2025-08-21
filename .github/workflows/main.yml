@@ -1,4 +1,4 @@
-name: Hprofile Actions
+name: Sprofile Actions
 on: workflow_dispatch
 env:
   AWS_REGION: us-east-1
@@ -61,13 +61,6 @@ jobs:
           sed -i "s/^jdbc.username.*$/jdbc.username\=${{ secrets.RDS_USER }}/" src/main/resources/application.properties
           sed -i "s/^jdbc.password.*$/jdbc.password\=${{ secrets.RDS_PASS }}/" src/main/resources/application.properties
           sed -i "s/db01/${{ secrets.RDS_ENDPOINT }}/" src/main/resources/application.properties
-      - name: Check AWS Identity
-        run: aws sts get-caller-identity
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.INPUT_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.INPUT_SECRET_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-
       - name: Build & Upload image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
